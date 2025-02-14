@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Examples with Nested Iframes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --accent-color: #2e7d32;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .objectives-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .objectives-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .objectives-list li {
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .objectives-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .iframe-container {
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 1000px;
+            transition: transform 0.3s ease;
+        }
+
+        .iframe-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin: 0 0 1.5rem 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h2 i {
+            color: var(--primary-color);
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .nested-iframe {
+            height: 250px;
+        }
+
+        .outer-iframe {
+            height: 400px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .iframe-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            nav a span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1><i class="fas fa-code"></i> Iframe Demonstration</h1>
+        <nav>
+            <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+        </nav>
+    </div>
+</header>
+
+<div class="objectives-container">
+    <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+    <ul class="objectives-list">
+        <li>Understand basic implementation of iframes in HTML</li>
+        <li>Learn how to create nested iframe structures</li>
+        <li>Explore responsive iframe embedding techniques</li>
+        <li>Implement security best practices for iframe usage</li>
+        <li>Master cross-origin communication between frames</li>
+    </ul>
+</div>
+
+<!-- Existing iframe containers remain the same but with added icons -->
+<div class="iframe-container" id="example1">
+    <h2><i class="fab fa-google"></i> Google Search (Placeholder)</h2>
+    <iframe id="googleIframe" name="googleIframe" src="https://cse.google.com/cse?q=..." height="300"></iframe>
+</div>
+
+<div class="iframe-container" id="example2">
+    <h2><i class="fab fa-wikipedia-w"></i> Wikipedia Page with Nested Iframe</h2>
+    <iframe class="outer-iframe" src="data:text/html;charset=utf-8,
+            <html>
+                <body>
+                    <h3>This is the outer iframe - Wikipedia</h3>
+                    <iframe class='nested-iframe' src='https://en.wikipedia.org/wiki/Web_development' title='Nested Iframe'></iframe>
+                </body>
+            </html>" allowfullscreen></iframe>
+</div>
+
+<div class="iframe-container" id="example3">
+    <h2><i class="fab fa-youtube"></i> YouTube Video</h2>
+    <iframe id="youtubeIframe" name="youtubeIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ" height="300" allowfullscreen></iframe>
+</div>
+
+<footer>
+    <p>&copy; 2023 Iframe Demo. All rights reserved. | Created with <i class="fas fa-heart"></i> by Web Dev Team</p>
+</footer>
+</body>
+</html>
