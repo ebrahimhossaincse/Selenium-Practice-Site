@@ -1,10 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Menus</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --accent-color: #2e7d32;
+        }
+
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .objectives-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .objectives-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .objectives-list li {
+            padding-left: 2rem;
+            position: relative;
+            color: green;
+        }
+
+        .objectives-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .main-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .menu-container {
+            margin: 20px 0;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+
+        .hover-dropdown:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .nav-item:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .nav-item:hover > .dropdown-menu,
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+
+    </style>
 </head>
 <body>
-$END$
+<header>
+    <div class="header-content">
+        <h1><i class="fas fa-bars"></i> JavaScript Menus</h1>
+    </div>
+</header>
+
+<div class="objectives-container">
+    <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+    <ul class="objectives-list">
+        <li>Understand the use of different types of menus in JavaScript</li>
+        <li>Learn how to implement dropdown menus in JavaScript</li>
+        <li>Explore the usage of nested and complex menus in web applications</li>
+        <li>Practice different menu types and their applications</li>
+    </ul>
+</div>
+
+<div class="main-container">
+    <h2><i class="fas fa-bars"></i> Different Types of Menus</h2>
+
+    <div class="menu-container">
+        <h3>E-commerce Menu</h3>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">E-commerce</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ecommerceMenu" aria-controls="ecommerceMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="ecommerceMenu">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Products
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="productsDropdown">
+                            <a class="dropdown-item" href="#">New Arrivals</a>
+                            <a class="dropdown-item" href="#">Best Sellers</a>
+                            <a class="dropdown-item" href="#">Discounts</a>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Categories</a>
+                                <div class="dropdown-menu">
+                                    <!--                                    <a class="dropdown-item" href="#">Electronics</a>-->
+                                    <div class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Electronics</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Phone</a>
+                                            <a class="dropdown-item" href="#">Charger</a>
+                                            <a class="dropdown-item" href="#">Earphone</a>
+                                        </div>
+                                    </div>
+                                    <a class="dropdown-item" href="#">Fashion</a>
+                                    <a class="dropdown-item" href="#">Home & Kitchen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Add functionality for nested dropdowns
+    $('.dropdown-submenu .dropdown-toggle').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).next('.dropdown-menu').toggle();
+    });
+
+    // Close nested dropdowns on clicking outside
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.dropdown').length) {
+            $('.dropdown-menu').hide();
+        }
+    });
+</script>
 </body>
 </html>

@@ -1,10 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium Practice Site</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+        }
+        .jumbotron {
+            background-color: rgba(0, 123, 255, 0.8);
+            color: white;
+        }
+        .footer {
+            background-color: rgba(241, 241, 241, 0.8);
+            padding: 20px 0;
+            color: black;
+        }
+        .card {
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black;
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-deck .card {
+            margin-bottom: 20px;
+        }
+        .social-icons a {
+            color: black;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #007bff;
+        }
+        /* Objective Section Design */
+        .objective-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            color: black;
+        }
+        .objective-section h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .objective-section p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .objective-section .icon {
+            font-size: 50px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-$END$
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Selenium Practice Site</h1>
+        <p class="lead">This is a simple site to practice Selenium automation. <strong><b>Developed by Md. Ebrahim Hossain</b></strong></p>
+    </div>
+</div>
+
+<!-- Objective Section -->
+<div class="container">
+    <div class="objective-section text-center">
+        <div class="icon">
+            <i class="fas fa-bullseye"></i>
+        </div>
+        <h2>Objective</h2>
+        <p>
+            The primary objective of this Selenium Practice Site is to provide a hands-on platform for learning and mastering Selenium automation. This site includes various interactive elements such as registration forms, JavaScript alerts, and browser window handling, which are essential for real-world automation testing. By practicing on this site, users can enhance their skills in automating web applications, handling dynamic web elements, and understanding the nuances of Selenium WebDriver.
+        </p>
+    </div>
+</div>
+
+<!-- Card Section -->
+<div class="container mt-5">
+    <div class="card-deck">
+        <!-- Elements Card -->
+        <div class="card">
+            <img class="card-img-top" src="images/form.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Elements</h5>
+                <p class="card-text">Click the button below to practice different types of elements.</p>
+                <a href="registration_form.html" class="btn btn-primary">Go to Elements</a>
+            </div>
+        </div>
+
+        <!-- JavaScript Alerts Card -->
+        <div class="card">
+            <img class="card-img-top" src="images/alerts.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">JavaScript Alerts</h5>
+                <p class="card-text">Click the button below to practice different types of JavaScript alerts.</p>
+                <a href="javascript_alerts.html" class="btn btn-primary">Go to JavaScript Alerts</a>
+            </div>
+        </div>
+
+        <!-- Browser Windows Card -->
+        <div class="card">
+            <img class="card-img-top" src="images/best-web-browsers.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Browser Windows</h5>
+                <p class="card-text">Click the button below to practice opening new tabs and windows.</p>
+                <a href="browser_windows.html" class="btn btn-primary">Go to Browser Windows Page</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-deck">
+        <!-- Dropdown Card -->
+        <div class="card">
+            <img class="card-img-top" src="images/form.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Practice Dropdown</h5>
+                <p class="card-text">Click the button below to practice different types of dropdown.</p>
+                <a href="dropdown_examples.html" class="btn btn-primary">Go to Dropdown Page</a>
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="card">
+            <img class="card-img-top" src="images/alerts.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">HTML Table</h5>
+                <p class="card-text">Click the button below to practice different types of table operation.</p>
+                <a href="web_table.html" class="btn btn-primary">Go to Table</a>
+            </div>
+        </div>
+
+        <!-- Browser Windows Card
+        <div class="card">
+            <img class="card-img-top" src="images/best-web-browsers.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Browser Windows</h5>
+                <p class="card-text">Click the button below to practice opening new tabs and windows.</p>
+                <a href="browser_windows.html" class="btn btn-primary">Go to Browser Windows</a>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer text-center text-lg-start mt-5">
+    <div class="container p-4">
+        <div class="social-icons mb-3">
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://medium.com" target="_blank"><i class="fab fa-medium"></i></a>
+            <a href="https://hashnode.com" target="_blank"><i class="fas fa-blog"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://stackoverflow.com" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+            <a href="https://dev.to" target="_blank"><i class="fab fa-dev"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:example@example.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2025 Selenium Practice Site. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

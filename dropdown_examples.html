@@ -2,9 +2,391 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown Examples</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #45a049;
+      --accent-color: #2e7d32;
+    }
+
+    body {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      padding: 1.5rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .objectives-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .objectives-container h2 {
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .objectives-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .objectives-list li {
+      padding-left: 2rem;
+      position: relative;
+      color: green;
+    }
+
+    .objectives-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .main-container h2 {
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .btn {
+      margin: 10px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      border-color: #ffc107;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+
+    .card-header{
+      color: green;
+    }
+  </style>
 </head>
 <body>
-$END$
+<header>
+  <div class="header-content">
+    <h1><i class="fas fa-caret-down"></i> Dropdown Examples</h1>
+    <nav>
+      <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="objectives-container">
+  <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+  <ul class="objectives-list">
+    <li>Understand different types of dropdowns</li>
+    <li>Learn how to implement dropdown menus</li>
+    <li>Explore various use cases for dropdowns</li>
+  </ul>
+</div>
+
+<div class="main-container">
+  <h2><i class="fas fa-caret-down"></i> Dropdown Examples</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Language Selection Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Language Selection</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="languageDropdown">Select Language</label>
+            <select class="form-control" id="languageDropdown">
+              <option>English</option>
+              <option>Spanish</option>
+              <option>French</option>
+              <option>German</option>
+              <option>Chinese</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Country Selection Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Country Selection</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="countryDropdown">Select Country</label>
+            <select class="form-control" id="countryDropdown">
+              <option>United States</option>
+              <option>Canada</option>
+              <option>United Kingdom</option>
+              <option>Australia</option>
+              <option>India</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme Selection Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Theme Selection</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="themeDropdown">Select Theme</label>
+            <select class="form-control" id="themeDropdown">
+              <option>Light</option>
+              <option>Dark</option>
+              <option>Blue</option>
+              <option>Green</option>
+              <option>Red</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Currency Selection Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Currency Selection</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="currencyDropdown">Select Currency</label>
+            <select class="form-control" id="currencyDropdown">
+              <option>USD</option>
+              <option>EUR</option>
+              <option>GBP</option>
+              <option>AUD</option>
+              <option>INR</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timezone Selection Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Timezone Selection</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="timezoneDropdown">Select Timezone</label>
+            <select class="form-control" id="timezoneDropdown">
+              <option>UTC</option>
+              <option>PST</option>
+              <option>EST</option>
+              <option>CST</option>
+              <option>IST</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <!-- Font Size Selection Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Font Size Selection</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="fontsizeDropdown">Select Font Size</label>
+            <select class="form-control" id="fontsizeDropdown">
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Large</option>
+              <option>Extra Large</option>
+              <option>Huge</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification Settings Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Notification Settings</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="notificationDropdown">Notification Settings</label>
+            <select class="form-control" id="notificationDropdown">
+              <option>All Notifications</option>
+              <option>Mentions Only</option>
+              <option>Direct Messages</option>
+              <option>No Notifications</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Visibility Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Profile Visibility</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="visibilityDropdown">Profile Visibility</label>
+            <select class="form-control" id="visibilityDropdown">
+              <option>Public</option>
+              <option>Friends Only</option>
+              <option>Private</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Settings Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Account Settings</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="accountDropdown">Account Settings</label>
+            <select class="form-control" id="accountDropdown">
+              <option>Personal Information</option>
+              <option>Security</option>
+              <option>Privacy</option>
+              <option>Subscriptions</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- File Format Selection Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">File Format Selection</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="fileformatDropdown">Select File Format</label>
+            <select class="form-control" id="fileformatDropdown">
+              <option>PDF</option>
+              <option>DOCX</option>
+              <option>TXT</option>
+              <option>CSV</option>
+              <option>XLSX</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Method Dropdown -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Payment Method</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="paymentDropdown">Select Payment Method</label>
+            <select class="form-control" id="paymentDropdown">
+              <option>Credit Card</option>
+              <option>Debit Card</option>
+              <option>PayPal</option>
+              <option>Bank Transfer</option>
+              <option>Cryptocurrency</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

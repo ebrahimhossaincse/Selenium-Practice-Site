@@ -1,10 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form - Selenium Practice Site</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --accent-color: #2e7d32;
+        }
+
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .objectives-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .objectives-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .objectives-list li {
+            padding-left: 2rem;
+            position: relative;
+            color: green;
+        }
+
+        .objectives-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .main-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .footer {
+            background-color: #f1f1f1;
+            padding: 20px 0;
+            color: #343a40;
+        }
+
+        .card {
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .form-section {
+            margin-top: 40px;
+        }
+
+        .form-group label{
+            font-weight: bold;
+            color: green;
+        }
+    </style>
 </head>
 <body>
-$END$
+<header>
+    <div class="header-content">
+        <h1><i class="fas fa-user-plus"></i> Registration Form</h1>
+        <nav>
+            <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+        </nav>
+    </div>
+</header>
+
+<div class="objectives-container">
+    <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+    <ul class="objectives-list">
+        <li>Understand how to fill out a registration form</li>
+        <li>Learn to use various input elements in forms</li>
+        <li>Explore different form validation techniques</li>
+        <li>Practice creating interactive web forms</li>
+    </ul>
+</div>
+
+<div class="main-container form-section">
+    <h2><i class="fas fa-user-plus"></i> Registration Form</h2>
+    <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="first-name">First Name</label>
+                <input type="text" class="form-control" id="first-name" name="first-name" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="last-name">Last Name</label>
+                <input type="text" class="form-control" id="last-name" name="last-name" placeholder="Enter your last name" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qualification">Qualification</label>
+            <input type="text" class="form-control" id="qualification" name="qualification" placeholder="Enter your qualification" required>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter your mobile number" required pattern="\d{11}" title="Please enter exactly 11 digits">
+        </div>
+        <div class="form-group">
+            <label for="hobbies">Hobbies</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="hobby1" name="hobbies" value="Reading">
+                <label class="form-check-label" for="hobby1">Reading</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="hobby2" name="hobbies" value="Traveling">
+                <label class="form-check-label" for="hobby2">Traveling</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="hobby3" name="hobbies" value="Gaming">
+                <label class="form-check-label" for="hobby3">Gaming</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="hobby4" name="hobbies" value="Cooking">
+                <label class="form-check-label" for="hobby4">Cooking</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="hobby5" name="hobbies" value="Sports">
+                <label class="form-check-label" for="hobby5">Sports</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address">Current Address</label>
+            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your current address" required></textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="state">State</label>
+                <select class="form-control" id="state" name="state" required>
+                    <option value="" disabled selected>Select State</option>
+                    <option value="California">California</option>
+                    <option value="Texas">Texas</option>
+                    <option value="New York">New York</option>
+                    <option value="Florida">Florida</option>
+                    <option value="Illinois">Illinois</option>
+                    <option value="Pennsylvania">Pennsylvania</option>
+                    <option value="Ohio">Ohio</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="North Carolina">North Carolina</option>
+                    <option value="Michigan">Michigan</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="city">City</label>
+                <select class="form-control" id="city" name="city" required>
+                    <option value="" disabled selected>Select City</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="Houston">Houston</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Miami">Miami</option>
+                    <option value="Philadelphia">Philadelphia</option>
+                    <option value="Phoenix">Phoenix</option>
+                    <option value="San Antonio">San Antonio</option>
+                    <option value="San Diego">San Diego</option>
+                    <option value="Dallas">Dallas</option>
+                    <option value="San Jose">San Jose</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="picture">Picture</label>
+            <input type="file" class="form-control-file" id="picture" name="picture">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+        <a href="home.html" class="btn btn-secondary btn-lg">Back to Home</a>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer class="footer text-center text-lg-start mt-5">
+    <div class="container p-4">
+        <p>&copy; 2025 Selenium Practice Site. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    function handleSubmit(event) {
+        event.preventDefault();
+        // Add form validation and submission logic here
+        window.location.href = 'registration_success.html';
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

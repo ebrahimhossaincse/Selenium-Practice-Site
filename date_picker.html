@@ -2,9 +2,309 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Picker Examples - Selenium Practice Site</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #45a049;
+      --accent-color: #2e7d32;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      padding: 1.5rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .objectives-container{
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+      flex: 1;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+      flex: 1;
+    }
+
+    .objectives-container h2, .main-container h2 {
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .objectives-container h2 i, .main-container h2 i {
+      color: var(--primary-color);
+    }
+
+    .objectives-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .objectives-list li {
+      padding-left: 2rem;
+      position: relative;
+    }
+
+    .objectives-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+
+    .footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 20px 0;
+      margin-top: 3rem;
+      flex-shrink: 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer a:hover {
+      color: var(--accent-color);
+    }
+
+    .social-icons a {
+      color: black;
+      margin: 0 10px;
+      font-size: 24px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #007bff;
+    }
+
+    .card {
+      margin-top: 20px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: black;
+      transition: transform 0.2s, box-shadow 0.2s;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      background-color: #007bff;
+      color: white;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .card-deck .card {
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .objectives-container, .main-container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      nav a span {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-$END$
+<header>
+  <div class="header-content">
+    <h1><i class="fas fa-calendar-alt"></i> Date Picker Examples</h1>
+    <nav>
+      <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="objectives-container">
+  <h2><i class="fas fa-bullseye"></i> Learning Objectives</h2>
+  <ul class="objectives-list">
+    <li>Understand basic implementation of date pickers in HTML</li>
+    <li>Learn how to use various types of date pickers</li>
+    <li>Explore responsive date picker embedding techniques</li>
+    <li>Implement accessibility best practices for date pickers</li>
+  </ul>
+</div>
+
+<div class="main-container">
+  <h2><i class="fas fa-calendar-alt"></i> Date Picker Examples</h2>
+  <p class="lead">Explore different types of date pickers used in web applications.</p>
+
+  <div class="card-deck">
+    <!-- Basic Date Picker Card -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Basic Date Picker</h5>
+        <p class="card-text">Select a date using the basic HTML5 date input.</p>
+        <input type="date" class="form-control">
+      </div>
+    </div>
+
+    <!-- Date and Time Picker Card -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Date and Time Picker</h5>
+        <p class="card-text">Select a date and time using the HTML5 datetime-local input.</p>
+        <input type="datetime-local" class="form-control">
+      </div>
+    </div>
+
+    <!-- Month Picker Card -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Month Picker</h5>
+        <p class="card-text">Select a month using the HTML5 month input.</p>
+        <input type="month" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="card-deck">
+    <!-- Week Picker Card -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Week Picker</h5>
+        <p class="card-text">Select a week using the HTML5 week input.</p>
+        <input type="week" class="form-control">
+      </div>
+    </div>
+
+    <!-- Time Picker Card -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Time Picker</h5>
+        <p class="card-text">Select a time using the HTML5 time input.</p>
+        <input type="time" class="form-control">
+      </div>
+    </div>
+
+    <!-- Color Picker Card -->
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Color Picker</h5>
+        <p class="card-text">Select a color using the HTML5 color input.</p>
+        <input type="color" class="form-control">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer text-center text-lg-start">
+<!--  <div class="container p-4">-->
+<!--    <div class="social-icons mb-3">-->
+<!--      <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>-->
+<!--      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>-->
+<!--      <a href="https://medium.com" target="_blank"><i class="fab fa-medium"></i></a>-->
+<!--      <a href="https://hashnode.com" target="_blank"><i class="fas fa-blog"></i></a>-->
+<!--      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>-->
+<!--      <a href="https://stackoverflow.com" target="_blank"><i class="fab fa-stack-overflow"></i></a>-->
+<!--      <a href="https://dev.to" target="_blank"><i class="fab fa-dev"></i></a>-->
+<!--      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>-->
+<!--      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>-->
+<!--      <a href="mailto:example@example.com"><i class="fas fa-envelope"></i></a>-->
+<!--    </div>-->
+    <p>&copy; 2025 Selenium Practice Site. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
