@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iframe Scroll Example</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #45a049;
+      --accent-color: #2e7d32;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header, footer {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .iframe-container {
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      max-width: 1000px;
+      transition: transform 0.3s ease;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #f8f9fa;
+    }
+
+    .nested-iframe { height: 250px; }
+    .outer-iframe { height: 400px; }
+  </style>
+</head>
+<body>
+<header>
+  <h1><i class="fas fa-code"></i> Scroll Exploration</h1>
+</header>
+
+<section class="container">
+  <h2>Introduction</h2>
+  <p>Iframes are essential elements in web development, allowing the embedding of external content seamlessly.</p>
+</section>
+
+<section class="container">
+  <h2>Advantages of Using Iframes</h2>
+  <ul>
+    <li>Embed external content without affecting the main page structure.</li>
+    <li>Improve content modularity and reusability.</li>
+    <li>Facilitate third-party integrations.</li>
+  </ul>
+</section>
+
+<section class="container">
+  <h2>Security Concerns</h2>
+  <p>While iframes are powerful, they come with security risks such as clickjacking and cross-site scripting.</p>
+</section>
+
+<section class="container">
+  <h2>Best Practices</h2>
+  <ul>
+    <li>Use the sandbox attribute to restrict iframe permissions.</li>
+    <li>Ensure the iframe source is from a trusted domain.</li>
+    <li>Avoid embedding login or sensitive content.</li>
+  </ul>
+</section>
+
+<div class="iframe-container">
+  <h2>Embedded Wikipedia Page</h2>
+  <iframe class="outer-iframe" src="https://en.wikipedia.org/wiki/Web_development"></iframe>
+</div>
+
+<div class="iframe-container">
+  <h2>Embedded YouTube Video</h2>
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" height="300" allowfullscreen></iframe>
+</div>
+
+<section class="container">
+  <h2>Interactive Form</h2>
+  <form>
+    <label for="feedback">Your Feedback:</label><br>
+    <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<section class="container">
+  <h2>Frequently Asked Questions</h2>
+  <details>
+    <summary>What is an iframe?</summary>
+    <p>An iframe is an HTML element that allows embedding another document within the current page.</p>
+  </details>
+  <details>
+    <summary>Can I style an iframe?</summary>
+    <p>Yes, but with limitations. You can apply CSS properties like border, width, and height.</p>
+  </details>
+</section>
+
+<section class="container">
+  <h2>Use Cases of Iframes</h2>
+  <p>Iframes are widely used for embedding videos, ads, interactive maps, and social media content.</p>
+</section>
+
+<section class="container">
+  <h2>Common Issues with Iframes</h2>
+  <p>Some common issues include slow loading times, security vulnerabilities, and compatibility problems.</p>
+</section>
+
+<section class="container">
+  <h2>Iframe Alternative Techniques</h2>
+  <p>Instead of iframes, developers can use AJAX requests, APIs, or server-side includes.</p>
+</section>
+
+<section class="container">
+  <h2>Embedding Google Maps</h2>
+  <iframe src="https://maps.google.com/maps?q=New+York&t=&z=13&ie=UTF8&iwloc=&output=embed" height="300"></iframe>
+</section>
+
+<section class="container">
+  <h2>Embedding a Twitter Feed</h2>
+  <iframe src="https://twitter.com/TwitterDev" height="300"></iframe>
+</section>
+
+<section class="container">
+  <h2>Iframe Performance Optimization</h2>
+  <p>Optimize performance by lazy loading iframes and using asynchronous loading techniques.</p>
+</section>
+
+<section class="container">
+  <h2>Iframe in Responsive Design</h2>
+  <p>Make iframes responsive using CSS techniques such as aspect ratio containers.</p>
+</section>
+
+<section class="container">
+  <h2>Conclusion</h2>
+  <p>Iframes are useful for embedding content, but they must be used responsibly to avoid security vulnerabilities.</p>
+</section>
+
+<footer>
+  <p>&copy; 2025 Iframe Demo. All rights reserved.</p>
+</footer>
+</body>
+</html>

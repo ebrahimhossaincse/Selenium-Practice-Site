@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern E-Commerce</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2a2a72;
+      --secondary: #009ffd;
+      --light: #f3f4f6;
+    }
+
+    body {
+      background-color: var(--light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 1.5rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .btn-custom {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      transition: opacity 0.3s;
+    }
+
+    .btn-custom:hover {
+      opacity: 0.9;
+      color: white;
+    }
+
+    .cart-badge {
+      transition: transform 0.3s;
+    }
+
+    .cart-badge.added {
+      transform: scale(1.2);
+    }
+
+    .cart-item-image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .sort-select {
+      border: 2px solid var(--primary);
+      border-radius: 25px;
+      padding: 8px 20px;
+    }
+
+    .modal-header {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .product-card {
+      animation: slideIn 0.5s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-shopping-bag me-2"></i>UrbanShop
+    </a>
+    <button class="btn btn-light position-relative" onclick="viewCart()">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cart-count" class="cart-badge badge bg-danger position-absolute top-0 start-100 translate-middle">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Sorting System -->
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary">Our Products</h2>
+    <select id="sort-options" class="sort-select" onchange="sortProducts()">
+      <option value="default">Sort By</option>
+      <option value="price-low-high">Price: Low to High</option>
+      <option value="price-high-low">Price: High to Low</option>
+      <option value="name-a-z">Name: A-Z</option>
+      <option value="name-z-a">Name: Z-A</option>
+    </select>
+  </div>
+  <div id="product-list" class="row g-4"></div>
+</div>
+
+<!-- Cart Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-shopping-cart me-2"></i>Your Cart</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul id="cart-items" class="list-group"></ul>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <h5 class="mb-0">Total:</h5>
+          <h3 class="text-primary mb-0">$<span id="cart-total">0.00</span></h3>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+        <button class="btn btn-primary" onclick="checkout()">Checkout Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

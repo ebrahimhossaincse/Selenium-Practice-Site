@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Order History</h2>
+    <ul id="order-list" class="list-group"></ul>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+        const orderList = document.getElementById("order-list");
+
+        if (orders.length === 0) {
+            orderList.innerHTML = "<li class='list-group-item'>No orders found.</li>";
+        } else {
+            orders.forEach(order => {
+                orderList.innerHTML += `<li class='list-group-item'>Order Total: $${order.total} - Date: ${order.date}</li>`;
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
