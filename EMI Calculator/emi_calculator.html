@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            color: #333;
+            font-weight: 500;
+        }
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 8px rgba(106, 17, 203, 0.5);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+        }
+        #result, #schedule {
+            display: none;
+            margin-top: 2rem;
+        }
+        #result h4 {
+            color: #333;
+            font-weight: bold;
+        }
+        #schedule h4 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>EMI Calculator</h1>
+        <form id="emiForm">
+            <div class="mb-3">
+                <label for="loanAmount" class="form-label">Loan Amount (৳)</label>
+                <input type="number" class="form-control" id="loanAmount" placeholder="Enter loan amount" required>
+            </div>
+            <div class="mb-3">
+                <label for="interestRate" class="form-label">Interest Rate (% per annum)</label>
+                <input type="number" class="form-control" id="interestRate" placeholder="Enter interest rate" required>
+            </div>
+            <div class="mb-3">
+                <label for="loanTenure" class="form-label">Loan Tenure (in months)</label>
+                <input type="number" class="form-control" id="loanTenure" placeholder="Enter loan tenure" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Calculate EMI</button>
+        </form>
+        <div id="result" class="mt-4">
+            <h4>EMI: <span id="emiValue" class="text-primary"></span></h4>
+            <h4>Total Interest: <span id="totalInterest" class="text-primary"></span></h4>
+            <h4>Total Payment: <span id="totalPayment" class="text-primary"></span></h4>
+        </div>
+        <div id="schedule" class="mt-4">
+            <h4>Loan Repayment Schedule</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Principal (৳)</th>
+                    <th>Interest (৳)</th>
+                    <th>Total Payment (৳)</th>
+                    <th>Remaining Loan (৳)</th>
+                </tr>
+                </thead>
+                <tbody id="scheduleBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('emiForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get input values
+        const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+        const interestRate = parseFloat(document.getElementById('interestRate').value);
+        const loanTenure = parseFloat(document.getElementById('loanTenure').value);
+
+        // Validate inputs
+        if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTenure)) {
+            alert('Please enter valid numbers in all fields.');
+            return;
+        }
+
+        // Calculate EMI
+        const monthlyInterestRate = (interestRate / 100) / 12;
+        const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTenure)) / (Math.pow(1 + monthlyInterestRate, loanTenure) - 1);
+
+        // Calculate Total Interest and Total Payment
+        const totalPayment = emi * loanTenure;
+        const totalInterest = totalPayment - loanAmount;
+
+        // Display results
+        document.getElementById('emiValue').textContent = `৳${emi.toFixed(2)}`;
+        document.getElementById('totalInterest').textContent = `৳${totalInterest.toFixed(2)}`;
+        document.getElementById('totalPayment').textContent = `৳${totalPayment.toFixed(2)}`;
+        document.getElementById('result').style.display = 'block';
+
+        // Generate Loan Repayment Schedule
+        let remainingLoan = loanAmount;
+        const scheduleBody = document.getElementById('scheduleBody');
+        scheduleBody.innerHTML = ''; // Clear previous schedule
+
+        for (let month = 1; month <= loanTenure; month++) {
+            const interest = remainingLoan * monthlyInterestRate;
+            const principal = emi - interest;
+            remainingLoan -= principal;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${month}</td>
+                    <td>৳${principal.toFixed(2)}</td>
+                    <td>৳${interest.toFixed(2)}</td>
+                    <td>৳${emi.toFixed(2)}</td>
+                    <td>৳${remainingLoan.toFixed(2)}</td>
+                `;
+            scheduleBody.appendChild(row);
+        }
+
+        document.getElementById('schedule').style.display = 'block';
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A/B Test Variation 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --accent-color: #2e7d32;
+        }
+
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-color);
+            color: black;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1><i class="fas fa-random"></i> A/B Test Variation 1</h1>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a>
+        </nav>
+    </div>
+</header>
+
+<div class="main-container" id="defaultContent">
+    <h2><i class="fas fa-flask"></i> Running A/B Test</h2>
+    <p>A/B testing (also known as split testing) allows businesses to test different versions of a page to determine which performs best.</p>
+    <p>To change the test variation, add <strong>?abtest_off=true</strong> or <strong>?abtest_off=false</strong> to the URL.</p>
+</div>
+
+<div class="main-container hidden" id="abTestTrueContent">
+    <h2><i class="fas fa-experiment"></i> A/B Test Variation Enabled</h2>
+    <p>This is the alternative content displayed when ?abtest_off=true is added to the URL.</p>
+</div>
+
+<div class="main-container hidden" id="abTestFalseContent">
+    <h2><i class="fas fa-check-circle"></i> A/B Test Disabled</h2>
+    <p>This is another variation displayed when ?abtest_off=false is added to the URL.</p>
+</div>
+
+<script>
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    window.onload = function () {
+        const abTestParam = getQueryParam('abtest_off');
+        if (abTestParam === 'false') {
+            document.getElementById('defaultContent').classList.add('hidden');
+            document.getElementById('abTestFalseContent').classList.remove('hidden');
+        } else if (abTestParam === 'true') {
+            document.getElementById('defaultContent').classList.add('hidden');
+            document.getElementById('abTestTrueContent').classList.remove('hidden');
+        }
+    };
+</script>
+</body>
+</html>

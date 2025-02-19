@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slow Resources</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #45a049;
+      --accent-color: #2e7d32;
+    }
+
+    body {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      padding: 1.5rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .main-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+      color: black;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h1><i class="fas fa-tachometer-alt-slow"></i> Slow Resources</h1>
+    <nav>
+      <a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="main-container">
+  <h2><i class="fas fa-hourglass-half"></i> Simulating Slow Loading Resources</h2>
+  <p>At times it can take a while for third-party site resources to load (e.g., tracking code javascript, social networking widgets, etc.). This example has a rogue GET request that takes 10 seconds to complete.</p>
+  <button class="btn btn-primary" onclick="simulateSlowRequest()">Trigger Slow Request</button>
+  <div id="responseContainer" class="mt-3"></div>
+  <p id="countdown"></p>
+</div>
+
+<script>
+  function simulateSlowRequest() {
+    const responseContainer = document.getElementById("responseContainer");
+    const countdownElement = document.getElementById("countdown");
+    responseContainer.innerHTML = "<p>Loading...</p>";
+
+    let count = 10;
+    countdownElement.innerHTML = `Waiting: ${count} seconds`;
+
+    let countdown = setInterval(() => {
+      count--;
+      countdownElement.innerHTML = `Waiting: ${count} seconds`;
+      if (count === 0) {
+        clearInterval(countdown);
+        countdownElement.innerHTML = "Request Completed!";
+        responseContainer.innerHTML = "<p><i class='fas fa-check-circle' style='color: green;'></i> Success: The slow request has completed.</p>";
+      }
+    }, 1000);
+  }
+</script>
+</body>
+</html>

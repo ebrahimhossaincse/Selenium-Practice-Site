@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 20px auto;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: white;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #balance {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .btn {
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-item span {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .user-section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4"><i class="fas fa-piggy-bank"></i> Welcome to Your Bank</h1>
+
+    <!-- User 1 Section -->
+    <div class="user-section">
+        <h2 class="text-center mb-3"><i class="fas fa-user"></i> User 1</h2>
+        <div class="card p-4">
+            <h5 class="card-title"><i class="fas fa-user"></i> Account Details</h5>
+            <p><strong>Account Holder:</strong> <span id="accountHolder1">John Doe</span></p>
+            <p><strong>Account Number:</strong> <span id="accountNumber1">1234567890</span></p>
+            <hr>
+            <h5 class="card-title"><i class="fas fa-wallet"></i> Account Balance</h5>
+            <p class="card-text" id="balance1">$0.00</p>
+        </div>
+
+        <div class="mt-4 card p-4">
+            <h3><i class="fas fa-exchange-alt"></i> Transactions</h3>
+            <div class="mb-3">
+                <label for="amount1" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount1" placeholder="Enter amount">
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-success" id="deposit1"><i class="fas fa-plus"></i> Deposit</button>
+                <button class="btn btn-danger" id="withdraw1"><i class="fas fa-minus"></i> Withdraw</button>
+                <button class="btn btn-primary" id="transfer1"><i class="fas fa-share"></i> Transfer</button>
+                <button class="btn btn-warning" id="interest1"><i class="fas fa-percent"></i> Add Interest (5%)</button>
+                <button class="btn btn-secondary" id="reset1"><i class="fas fa-redo"></i> Reset Account</button>
+            </div>
+        </div>
+
+        <div class="mt-4 card p-4">
+            <h3><i class="fas fa-filter"></i> Filter Transactions</h3>
+            <div class="filter-buttons">
+                <button class="btn btn-outline-primary" id="filterAll1">All</button>
+                <button class="btn btn-outline-success" id="filterDeposits1">Deposits</button>
+                <button class="btn btn-outline-danger" id="filterWithdrawals1">Withdrawals</button>
+                <button class="btn btn-outline-info" id="filterTransfers1">Transfers</button>
+            </div>
+            <ul class="list-group" id="history1"></ul>
+        </div>
+
+        <div class="mt-4 card p-4">
+            <h3><i class="fas fa-history"></i> Transfer History</h3>
+            <ul class="list-group" id="transferHistory1"></ul>
+        </div>
+    </div>
+
+    <!-- User 2 Section -->
+    <div class="user-section">
+        <h2 class="text-center mb-3"><i class="fas fa-user"></i> User 2</h2>
+        <div class="card p-4">
+            <h5 class="card-title"><i class="fas fa-user"></i> Account Details</h5>
+            <p><strong>Account Holder:</strong> <span id="accountHolder2">Jane Smith</span></p>
+            <p><strong>Account Number:</strong> <span id="accountNumber2">0987654321</span></p>
+            <hr>
+            <h5 class="card-title"><i class="fas fa-wallet"></i> Account Balance</h5>
+            <p class="card-text" id="balance2">$0.00</p>
+        </div>
+
+        <div class="mt-4 card p-4">
+            <h3><i class="fas fa-exchange-alt"></i> Transactions</h3>
+            <div class="mb-3">
+                <label for="amount2" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount2" placeholder="Enter amount">
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-success" id="deposit2"><i class="fas fa-plus"></i> Deposit</button>
+                <button class="btn btn-danger" id="withdraw2"><i class="fas fa-minus"></i> Withdraw</button>
+                <button class="btn btn-primary" id="transfer2"><i class="fas fa-share"></i> Transfer</button>
+                <button class="btn btn-warning" id="interest2"><i class="fas fa-percent"></i> Add Interest (5%)</button>
+                <button class="btn btn-secondary" id="reset2"><i class="fas fa-redo"></i> Reset Account</button>
+            </div>
+        </div>
+
+        <div class="mt-4 card p-4">
+            <h3><i class="fas fa-filter"></i> Filter Transactions</h3>
+            <div class="filter-buttons">
+                <button class="btn btn-outline-primary" id="filterAll2">All</button>
+                <button class="btn btn-outline-success" id="filterDeposits2">Deposits</button>
+                <button class="btn btn-outline-danger" id="filterWithdrawals2">Withdrawals</button>
+                <button class="btn btn-outline-info" id="filterTransfers2">Transfers</button>
+            </div>
+            <ul class="list-group" id="history2"></ul>
+        </div>
+
+        <div class="mt-4 card p-4">
+            <h3><i class="fas fa-history"></i> Transfer History</h3>
+            <ul class="list-group" id="transferHistory2"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- Notification -->
+<div id="notification" class="notification" style="display: none;">
+    <div class="alert alert-success" role="alert">
+        <i class="fas fa-check-circle"></i> <span id="notificationMessage"></span>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // User 1 Data
+    let balance1 = 0;
+    let history1 = [];
+    let transferHistory1 = [];
+
+    // User 2 Data
+    let balance2 = 0;
+    let history2 = [];
+    let transferHistory2 = [];
+
+    // DOM Elements for User 1
+    const balanceElement1 = document.getElementById('balance1');
+    const amountInput1 = document.getElementById('amount1');
+    const depositButton1 = document.getElementById('deposit1');
+    const withdrawButton1 = document.getElementById('withdraw1');
+    const transferButton1 = document.getElementById('transfer1');
+    const interestButton1 = document.getElementById('interest1');
+    const resetButton1 = document.getElementById('reset1');
+    const historyElement1 = document.getElementById('history1');
+    const transferHistoryElement1 = document.getElementById('transferHistory1');
+
+    // DOM Elements for User 2
+    const balanceElement2 = document.getElementById('balance2');
+    const amountInput2 = document.getElementById('amount2');
+    const depositButton2 = document.getElementById('deposit2');
+    const withdrawButton2 = document.getElementById('withdraw2');
+    const transferButton2 = document.getElementById('transfer2');
+    const interestButton2 = document.getElementById('interest2');
+    const resetButton2 = document.getElementById('reset2');
+    const historyElement2 = document.getElementById('history2');
+    const transferHistoryElement2 = document.getElementById('transferHistory2');
+
+    // Notification
+    const notification = document.getElementById('notification');
+    const notificationMessage = document.getElementById('notificationMessage');
+
+    // Update Balance Display
+    function updateBalance(user) {
+        if (user === 1) {
+            balanceElement1.textContent = `$${balance1.toFixed(2)}`;
+        } else if (user === 2) {
+            balanceElement2.textContent = `$${balance2.toFixed(2)}`;
+        }
+    }
+
+    // Show Notification
+    function showNotification(message, type = 'success') {
+        notificationMessage.textContent = message;
+        notification.style.display = 'block';
+        notification.querySelector('.alert').className = `alert alert-${type}`;
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+
+    // Add Transaction to History
+    function addTransaction(user, type, amount, targetAccount = null) {
+        const transaction = {
+            type: type,
+            amount: amount,
+            targetAccount: targetAccount,
+            date: new Date().toLocaleString()
+        };
+
+        if (user === 1) {
+            history1.push(transaction);
+            updateHistoryDisplay(historyElement1, transaction);
+            if (transaction.targetAccount) {
+                transferHistory1.push(transaction);
+                updateTransferHistory(transferHistoryElement1, transferHistory1);
+            }
+        } else if (user === 2) {
+            history2.push(transaction);
+            updateHistoryDisplay(historyElement2, transaction);
+            if (transaction.targetAccount) {
+                transferHistory2.push(transaction);
+                updateTransferHistory(transferHistoryElement2, transferHistory2);
+            }
+        }
+    }
+
+    // Update History Display
+    function updateHistoryDisplay(historyElement, transaction) {
+        const li = document.createElement('li');
+        li.className = 'list-group-item transaction-item';
+        let transactionText = `${transaction.type} of $${transaction.amount.toFixed(2)}`;
+        if (transaction.targetAccount) {
+            transactionText += ` to Account ${transaction.targetAccount}`;
+        }
+        transactionText += ` on ${transaction.date}`;
+        li.innerHTML = `
+        <span>${transactionText}</span>
+        <span class="badge bg-${transaction.type === 'Deposit' ? 'success' : transaction.type === 'Withdrawal' ? 'danger' : 'info'}">${transaction.type}</span>
+      `;
+        historyElement.appendChild(li);
+    }
+
+    // Update Transfer History
+    function updateTransferHistory(transferHistoryElement, transferHistory) {
+        transferHistoryElement.innerHTML = '';
+        transferHistory.forEach(transaction => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item transaction-item';
+            li.innerHTML = `
+          <span>Transferred $${transaction.amount.toFixed(2)} to Account ${transaction.targetAccount} on ${transaction.date}</span>
+          <span class="badge bg-info">Transfer</span>
+        `;
+            transferHistoryElement.appendChild(li);
+        });
+    }
+
+    // Deposit Functionality
+    function deposit(user) {
+        const amountInput = user === 1 ? amountInput1 : amountInput2;
+        const amount = parseFloat(amountInput.value);
+        if (amount > 0) {
+            if (user === 1) {
+                balance1 += amount;
+                updateBalance(1);
+                addTransaction(1, 'Deposit', amount);
+            } else if (user === 2) {
+                balance2 += amount;
+                updateBalance(2);
+                addTransaction(2, 'Deposit', amount);
+            }
+            amountInput.value = '';
+            showNotification('Deposit successful!');
+        } else {
+            showNotification('Please enter a valid amount.', 'danger');
+        }
+    }
+
+    depositButton1.addEventListener('click', () => deposit(1));
+    depositButton2.addEventListener('click', () => deposit(2));
+
+    // Withdraw Functionality
+    function withdraw(user) {
+        const amountInput = user === 1 ? amountInput1 : amountInput2;
+        const amount = parseFloat(amountInput.value);
+        if (amount > 0) {
+            if (user === 1 && amount <= balance1) {
+                balance1 -= amount;
+                updateBalance(1);
+                addTransaction(1, 'Withdrawal', amount);
+            } else if (user === 2 && amount <= balance2) {
+                balance2 -= amount;
+                updateBalance(2);
+                addTransaction(2, 'Withdrawal', amount);
+            } else {
+                showNotification('Insufficient funds.', 'danger');
+                return;
+            }
+            amountInput.value = '';
+            showNotification('Withdrawal successful!');
+        } else {
+            showNotification('Please enter a valid amount.', 'danger');
+        }
+    }
+
+    withdrawButton1.addEventListener('click', () => withdraw(1));
+    withdrawButton2.addEventListener('click', () => withdraw(2));
+
+    // Transfer Functionality
+    function transfer(user) {
+        const amountInput = user === 1 ? amountInput1 : amountInput2;
+        const amount = parseFloat(amountInput.value);
+        const targetAccount = prompt('Enter the target account number:');
+        if (amount > 0 && targetAccount) {
+            if (user === 1 && amount <= balance1) {
+                balance1 -= amount;
+                updateBalance(1);
+                addTransaction(1, 'Transfer', amount, targetAccount);
+            } else if (user === 2 && amount <= balance2) {
+                balance2 -= amount;
+                updateBalance(2);
+                addTransaction(2, 'Transfer', amount, targetAccount);
+            } else {
+                showNotification('Insufficient funds.', 'danger');
+                return;
+            }
+            amountInput.value = '';
+            showNotification('Transfer successful!');
+        } else {
+            showNotification('Invalid amount or target account.', 'danger');
+        }
+    }
+
+    transferButton1.addEventListener('click', () => transfer(1));
+    transferButton2.addEventListener('click', () => transfer(2));
+
+    // Interest Functionality
+    function addInterest(user) {
+        if (user === 1) {
+            const interest = balance1 * 0.05;
+            balance1 += interest;
+            updateBalance(1);
+            addTransaction(1, 'Interest', interest);
+        } else if (user === 2) {
+            const interest = balance2 * 0.05;
+            balance2 += interest;
+            updateBalance(2);
+            addTransaction(2, 'Interest', interest);
+        }
+        showNotification('Interest added!');
+    }
+
+    interestButton1.addEventListener('click', () => addInterest(1));
+    interestButton2.addEventListener('click', () => addInterest(2));
+
+    // Reset Account
+    function resetAccount(user) {
+        if (confirm('Are you sure you want to reset your account?')) {
+            if (user === 1) {
+                balance1 = 0;
+                history1 = [];
+                transferHistory1 = [];
+                updateBalance(1);
+                historyElement1.innerHTML = '';
+                transferHistoryElement1.innerHTML = '';
+            } else if (user === 2) {
+                balance2 = 0;
+                history2 = [];
+                transferHistory2 = [];
+                updateBalance(2);
+                historyElement2.innerHTML = '';
+                transferHistoryElement2.innerHTML = '';
+            }
+            showNotification('Account reset successfully!');
+        }
+    }
+
+    resetButton1.addEventListener('click', () => resetAccount(1));
+    resetButton2.addEventListener('click', () => resetAccount(2));
+
+    // Filter Transactions
+    function filterTransactions(user, type) {
+        const historyElement = user === 1 ? historyElement1 : historyElement2;
+        const history = user === 1 ? history1 : history2;
+        historyElement.innerHTML = '';
+        history.forEach(transaction => {
+            if (type === 'All' || transaction.type === type) {
+                updateHistoryDisplay(historyElement, transaction);
+            }
+        });
+    }
+        // Filter Buttons for User 1
+        document.getElementById('filterAll1').addEventListener('click', () => filterTransactions(1, 'All'));
+        document.getElementById('filterDeposits1').addEventListener('click', () => filterTransactions(1, 'Deposit'));
+        document.getElementById('filterWithdrawals1').addEventListener('click', () => filterTransactions(1, 'Withdrawal'));
+        document.getElementById('filterTransfers1').addEventListener('click', () => filterTransactions(1, 'Transfer'));
+
+        // Filter Buttons for User 2
+        document.getElementById('filterAll2').addEventListener('click', () => filterTransactions(2, 'All'));
+        document.getElementById('filterDeposits2').addEventListener('click', () => filterTransactions(2, 'Deposit'));
+        document.getElementById('filterWithdrawals2').addEventListener('click', () => filterTransactions(2, 'Withdrawal'));
+        document.getElementById('filterTransfers2').addEventListener('click', () => filterTransactions(2, 'Transfer'));
+
+        // Initial balance update
+        updateBalance(1);
+        updateBalance(2);
+</script>
+</body>
+</html>

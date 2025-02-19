@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Console Logs</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #45a049;
+      --accent-color: #2e7d32;
+    }
+
+    body {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      padding: 1.5rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .main-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary-color);
+      color: black;
+      text-align: center;
+    }
+
+    .log-card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .log-output {
+      background: #e9ecef;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+      min-height: 30px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h1><i class="fas fa-terminal"></i> Check Console Logs</h1>
+    <nav>
+      <a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="main-container">
+  <h2>Click the buttons to generate console logs</h2>
+
+  <div class="log-card">
+    <h5>Real-Time Browser Data</h5>
+    <p>Displays real-time browser information.</p>
+    <button class="btn btn-info" onclick="updateBrowserInfo()">Show Browser Info</button>
+    <div class="log-output" id="browser-info"></div>
+  </div>
+
+  <div class="log-card">
+    <h5>Console Log</h5>
+    <p>Logs a simple message to the console.</p>
+    <button class="btn btn-primary" onclick="logMessage('log', 'Simple message', 'log-output-1')">Log Message</button>
+    <div class="log-output" id="log-output-1"></div>
+  </div>
+
+  <div class="log-card">
+    <h5>Console Warn</h5>
+    <p>Logs a warning message to the console.</p>
+    <button class="btn btn-warning" onclick="logMessage('warn', 'Warning message', 'log-output-2')">Log Warning</button>
+    <div class="log-output" id="log-output-2"></div>
+  </div>
+
+  <div class="log-card">
+    <h5>Console Error</h5>
+    <p>Logs an error message to the console.</p>
+    <button class="btn btn-danger" onclick="logMessage('error', 'Error message', 'log-output-3')">Log Error</button>
+    <div class="log-output" id="log-output-3"></div>
+  </div>
+
+  <div class="log-card">
+    <h5>Console Info</h5>
+    <p>Logs an informational message to the console.</p>
+    <button class="btn btn-info" onclick="logMessage('info', 'Info message', 'log-output-4')">Log Info</button>
+    <div class="log-output" id="log-output-4"></div>
+  </div>
+
+  <div class="log-card">
+    <h5>Console Debug</h5>
+    <p>Logs a debugging message to the console.</p>
+    <button class="btn btn-secondary" onclick="logMessage('debug', 'Debugging message', 'log-output-5')">Log Debug</button>
+    <div class="log-output" id="log-output-5"></div>
+  </div>
+
+  <div class="log-card">
+    <h5>Console Table</h5>
+    <p>Logs data in tabular format to the console.</p>
+    <button class="btn btn-success" onclick="logTable()">Log Table</button>
+    <div class="log-output" id="log-output-6"></div>
+  </div>
+</div>
+
+<script>
+  function logMessage(type, message, outputId) {
+    const timestamp = new Date().toISOString();
+    const logText = `[console.${type}()] ${timestamp} - ${message}`;
+    console[type](logText);
+    document.getElementById(outputId).innerText = logText;
+  }
+
+  function logTable() {
+    const timestamp = new Date().toISOString();
+    const tableData = [
+      { index: 1, text: 'message1', date: timestamp },
+      { index: 2, text: 'message2', date: timestamp }
+    ];
+    console.table(tableData);
+    document.getElementById('log-output-6').innerText = `Logged table data in the console at ${timestamp}`;
+  }
+
+  function updateBrowserInfo() {
+    const timestamp = new Date().toISOString();
+    const browserInfo = `User Agent: ${navigator.userAgent}\nScreen Size: ${window.screen.width}x${window.screen.height}\nCurrent URL: ${window.location.href}\nTimestamp: ${timestamp}`;
+    console.log(browserInfo);
+    document.getElementById('browser-info').innerText = browserInfo;
+  }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
