@@ -173,9 +173,9 @@
 <body>
 <header>
     <div class="header-content">
-        <h1><i class="fas fa-user-cog"></i> Dynamic Locators </h1>
+        <h1><i class="fas fa-user-plus"></i> Registration Form</h1>
         <nav>
-            <a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a>
+            <a href="../index.html"><i class="fas fa-home"></i> <span>Home</span></a>
         </nav>
     </div>
 </header>
@@ -191,7 +191,7 @@
 </div>
 
 <div class="main-container form-section">
-    <h2><i class="fas fa-user-cog"></i> Dynamic Locators</h2>
+    <h2><i class="fas fa-user-plus"></i> Registration Form</h2>
     <form onsubmit="handleSubmit(event)">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -306,7 +306,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary btn-lg">Register</button>
-        <a href="index.html" class="btn btn-secondary btn-lg">Back to Home</a>
+        <a href="../index.html" class="btn btn-secondary btn-lg">Back to Home</a>
     </form>
 </div>
 
@@ -323,52 +323,6 @@
         // Add form validation and submission logic here
         window.location.href = 'registration_success.html';
     }
-
-    function generateRandomString(length = 8) {
-        return Math.random().toString(36).substring(2, length + 2);
-    }
-
-    function updateAttributes(element, attributes) {
-        for (const [key, value] of Object.entries(attributes)) {
-            element.setAttribute(key, value);
-        }
-    }
-
-    function updateLabels() {
-        const labels = document.querySelectorAll('label');
-        labels.forEach(label => {
-            const forAttribute = label.getAttribute('for');
-            if (forAttribute) {
-                label.setAttribute('for', generateRandomString());
-            }
-        });
-    }
-
-    function updateFormFields() {
-        const formFields = document.querySelectorAll('input, select, textarea');
-        formFields.forEach(field => {
-            const randomId = generateRandomString();
-            const randomName = generateRandomString();
-            const randomPlaceholder = `Enter your value`;
-
-            updateAttributes(field, {
-                id: randomId,
-                name: randomName,
-                placeholder: randomPlaceholder,
-            });
-
-            // Update associated label's "for" attribute
-            const label = document.querySelector(`label[for="${field.id}"]`);
-            if (label) {
-                label.setAttribute('for', randomId);
-            }
-        });
-    }
-
-    window.onload = () => {
-        updateLabels();
-        updateFormFields();
-    };
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

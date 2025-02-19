@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A/B Test Variation 1</title>
+    <title>Registration Success - Selenium Practice Site</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,6 +23,9 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
@@ -65,64 +68,69 @@
         }
 
         .main-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 2rem auto;
             padding: 2rem;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             border-left: 4px solid var(--primary-color);
-            color: black;
-            text-align: center;
+            flex: 1;
         }
 
-        .hidden {
-            display: none;
+        .main-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            margin-top: 3rem;
+            flex-shrink: 0;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
         }
     </style>
 </head>
 <body>
 <header>
     <div class="header-content">
-        <h1><i class="fas fa-random"></i> A/B Test Variation 1</h1>
+        <h1><i class="fas fa-check-circle"></i> Registration Success</h1>
         <nav>
-            <a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a>
+            <a href="../index.html"><i class="fas fa-home"></i> <span>Home</span></a>
         </nav>
     </div>
 </header>
 
-<div class="main-container" id="defaultContent">
-    <h2><i class="fas fa-flask"></i> Running A/B Test</h2>
-    <p>A/B testing (also known as split testing) allows businesses to test different versions of a page to determine which performs best.</p>
-    <p>To change the test variation, add <strong>?abtest_off=true</strong> or <strong>?abtest_off=false</strong> to the URL.</p>
+<div class="main-container">
+    <h2><i class="fas fa-check-circle"></i> Registration Successful!</h2>
+    <p class="lead">Thank you for registering at the Selenium Practice Site.</p>
 </div>
 
-<div class="main-container hidden" id="abTestTrueContent">
-    <h2><i class="fas fa-experiment"></i> A/B Test Variation Enabled</h2>
-    <p>This is the alternative content displayed when ?abtest_off=true is added to the URL.</p>
-</div>
+<!-- Footer -->
+<footer class="footer text-center text-lg-start">
+    <div class="container p-4">
+        <p>&copy; 2025 Selenium Practice Site. All rights reserved.</p>
+    </div>
+</footer>
 
-<div class="main-container hidden" id="abTestFalseContent">
-    <h2><i class="fas fa-check-circle"></i> A/B Test Disabled</h2>
-    <p>This is another variation displayed when ?abtest_off=false is added to the URL.</p>
-</div>
-
-<script>
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    window.onload = function () {
-        const abTestParam = getQueryParam('abtest_off');
-        if (abTestParam === 'false') {
-            document.getElementById('defaultContent').classList.add('hidden');
-            document.getElementById('abTestFalseContent').classList.remove('hidden');
-        } else if (abTestParam === 'true') {
-            document.getElementById('defaultContent').classList.add('hidden');
-            document.getElementById('abTestTrueContent').classList.remove('hidden');
-        }
-    };
-</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
